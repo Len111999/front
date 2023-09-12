@@ -9,8 +9,7 @@ function Login() {
     const history = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(true); // Estado para el checkbox
-
+    const [rememberMe, setRememberMe] = useState(true);
     async function submit(e) {
         e.preventDefault();
         try {
