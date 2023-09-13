@@ -3,6 +3,7 @@ import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 import "./SignUp.css"
 import { Footer } from "../Footer/Footer";
+import { Navbar } from "../navegacion/Navbar";
 
 function Login() {
     const history=useNavigate();
@@ -34,6 +35,7 @@ function Login() {
     }
     return (
         <div className="Signup">
+            <Navbar/>
             <section className="vh-100">
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">

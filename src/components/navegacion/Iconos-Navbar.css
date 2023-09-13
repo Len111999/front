@@ -1,0 +1,12 @@
+.icon-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-top: -55px;
+    margin-left: auto; /* Esto mueve los iconos hacia la derecha */
+    margin-right: 50px;
+  }
+  
+  .icon-item {
+    margin-left: 16px; /* Espacio entre los iconos (ajústalo según lo necesites) */
+  }

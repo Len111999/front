@@ -1,0 +1,36 @@
+.item-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 70px;
+
+    transition: all 0.3s ease;
+}
+  
+.icono {
+    width: 70px; /* Ajusta el tamaño del icono según tus preferencias */
+    height: auto; /* Esto mantiene la proporción del icono */
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+  
+span {
+    font-size: 20px; /* Ajusta el tamaño del texto según tus preferencias */
+}
+.item-container:hover{
+    color: rgb(87, 87, 87);
+}
+.nombre {
+    margin-left: 10px;
+    transition: opacity 0.3s ease; /* Agregamos una transición para la animación de desvanecimiento */
+}
+  
+.oculto {
+    opacity: 0; /* Hacemos que el elemento sea completamente transparente */
+}
+  
+.reducido {
+    transform: scale(0.8) translateX(-70px);; /* Reducimos el tamaño de todos los elementos */
+    transition: transform 0.3s;
+}

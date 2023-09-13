@@ -1,0 +1,14 @@
+.menu-list-container {
+    display: flex;
+    justify-content: center;
+    margin-left: 750px;
+}
+.IconList-container{
+    margin-top: 5px;
+    margin-left: 1400px;
+    display: flex;
+    justify-content: center;
+}
+  .navbarE {
+    font-size: 20px; /* Ajusta el tamaño de la fuente del Navbar */
+  }

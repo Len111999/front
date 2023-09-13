@@ -1,20 +1,22 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from './components/navegacion/Navbar';
 import Login from './components/Auth/Login';
 import Signup from './components/Auth/SignUp';
 import Inicio from './components/Paginas/Inicio';
+import Equipo from './components/Equipo/Equipo';
+import { Home } from './components/Paginas/Home';
+
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
         <Routes>
           <Route path="/" element={<Inicio/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path='/Equipo' element = {<Equipo/>}/>
+          <Route path="/Home" element = {<Home/>}/>
         </Routes>
       </div>
     </Router>

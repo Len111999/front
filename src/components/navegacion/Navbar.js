@@ -19,9 +19,9 @@ export const Navbar = () => {
     <div className='Body'>
         <div className="Navbar" style={{ top: '0px', '--hover-color': hoverColor }}>
           <ul className="llinks">
-            <li><a href="#Equipo_a_medida" className="mlink">Arma tu equipo</a></li>
-            <li><a href="#mSoluciones" className="mlink">Soluciones</a></li>
-            <li><a href="#Tienda" className="mlink">Tienda</a></li>
+            <li><Link to="/Equipo" className="mlink">Arma tu equipo</Link></li>
+            <li><Link to="#mSoluciones" className="mlink">Soluciones</Link></li>
+            <li><Link to="#Tienda" className="mlink">Tienda</Link></li>
           </ul>
           <a href="/" className="logo">
           <img src="/Logo_NEX.svg" alt="NEX" width="115" height="30"/>

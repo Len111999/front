@@ -11,7 +11,7 @@ export const Footer = () => {
                     <input type="hidden" name="src" value="newsletter"/>
                     <input type="hidden" name="callback" value=""/>
                         <p className="title2">Apúntate a la newsletter para recibir las novedades</p>
-                    <input rel="1" id="register_input_footer" required="required" className="required email" type="email" name="email" autocomplete="email" placeholder="Dirección e-mail"/>
+                    <input rel="1" id="register_input_footer" required="required"  className="required email" type="email" name="email" autocomplete="email" placeholder="Dirección e-mail"/>
                     <span id="register_newsletter" className="send-newsletter">
                         <span className="ico-newsletter">→</span>
                     </span>

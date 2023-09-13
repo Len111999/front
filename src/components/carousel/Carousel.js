@@ -1,9 +1,9 @@
 import React, { useRef, useEffect} from 'react'
 import './Carousel.css'
 import { Footer } from '../Footer/Footer';
+import { Link } from 'react-router-dom';
 export const Carousel = () => {
     const videoRef = useRef();
-
     useEffect(() =>{
         videoRef.current.play();
     }, []);
@@ -16,7 +16,7 @@ export const Carousel = () => {
                         <div className="desktop" data-target="designer_desktop" id="">
                             <div className="text">Cuando compras un ordenador en una tienda física, hay varios detalles que no explican incluso puede que algunos componentes no sean los que pides, por eso en N-EX con nuestro avanzado algoritmo interactivo nos aseguramos de que tu ordenador este armado con los componentes que desees.</div>
                             <div className="cta_row">
-                                <a className="cta" href="/es/info/nuestros-valores#technology">Comenzar</a>
+                                <Link className="cta" to="/Equipo">Comenzar</Link>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ export const Carousel = () => {
                 <div className="clone_desktop" data-target="designer_desktop">
                     <div className="text">Cuando compras un ordenador en una tienda física, hay varios detalles que no explican incluso puede que algunos componentes no sean los que pides, por eso en N-EX con nuestro avanzado algoritmo interactivo nos aseguramos de que tu ordenador este armado con los componentes que desees.</div>
                     <div className="cta_row">
-                        <a className="cta" href="/es/info/nuestros-valores#technology">Comenzar</a>
+                        <Link className="cta" to="/Equipo">Comenzar</Link>
                     </div>
                 </div>
             </div>

@@ -4,12 +4,14 @@ import { useNavigate, Link } from "react-router-dom";
 import './Login.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Footer } from "../Footer/Footer";
+import { Navbar } from "../navegacion/Navbar";
 
 function Login() {
     const history = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(true);
+    const [rememberMe, setRememberMe] = useState(true); // Estado para el checkbox
+
     async function submit(e) {
         e.preventDefault();
         try {
@@ -38,6 +40,7 @@ function Login() {
 
     return (
         <div className="login">
+          <Navbar/>
             <section className="vh-100">
             <div className="container py-5 h-100">
               <div className="row d-flex align-items-center justify-content-center h-100" style={{borderRadius: '25px', backgroundColor: '#f8f5e9'}}>
