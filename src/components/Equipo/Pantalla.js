@@ -13,7 +13,7 @@ const images = [
   { id: 4, src: '/Pantalla4.webp', alt: 'Elysium Pro 27', price: 228.99 },
 ];
 
-const Pantalla = ({updateTotalPrice}) => {
+const Pantalla = ({updateTotalPrice, setSelectedPantalla}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -27,7 +27,8 @@ const Pantalla = ({updateTotalPrice}) => {
       setSelectedImage(image);
       setShowDetails(false);
       setPantallaSeleccionada(true);
-      updateTotalPrice(image.price);
+      updateTotalPrice(Number(image.price.toFixed(2)));
+      setSelectedPantalla(image);
     }
   };
 
@@ -45,7 +46,7 @@ const Pantalla = ({updateTotalPrice}) => {
 
   const handleDeleteClick = () => {
     if (selectedImage) {
-      updateTotalPrice(-selectedImage.price); // Resta el precio de la pantalla eliminada
+      updateTotalPrice(Number(-selectedImage.price.toFixed(2))); // Resta el precio de la pantalla eliminada
       setSelectedImage(null);
       setPantallaSeleccionada(false);
     }
@@ -57,7 +58,7 @@ const Pantalla = ({updateTotalPrice}) => {
         <Col key={idx}>
           <Card style={{ width: '12.5rem', height: '100%' }}>
             <Card.Img variant="top" src={image.src} alt={image.alt} />
-            <Card.Body className="d-flex flex-column">
+            <Card.Body classalt="d-flex flex-column">
               <Card.Title>{image.alt}</Card.Title>
               <div className="d-flex justify-content-between">
                 <Button variant="primary" onClick={() => handleAddClick(image)}>

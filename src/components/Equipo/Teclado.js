@@ -7,13 +7,12 @@ import Modal from 'react-bootstrap/Modal';
 import './Pantalla.css';
 
 const images = [
-  { id: 1, src: '/CPU1.webp', alt: 'PcCom iCUE i7', price: 2967.72 },
-  { id: 2, src: '/CPU2.webp', alt: 'PcCom Ready Ryzen 5', price: 1049.24 },
-  { id: 3, src: '/CPU3.webp', alt: 'PcCom Ready Ryzen 5', price: 1084.81 },
-  { id: 4, src: '/CPU4.webp', alt: 'PcCom Lite i5', price: 1171.01 },
+  { id: 1, src: '/Teclado1.webp', alt: 'Razer Huntsman Mini Teclado Gaming', price: 89.99 },
+  { id: 2, src: '/Teclado2.webp', alt: 'Forgeon Clutch Teclado Gaming RGB 60% Switch Red', price: 53.99 },
+  { id: 3, src: '/Teclado3.webp', alt: 'Newskill Chronos TKL Teclado Mecánico Gaming RGB Switch Red', price: 54.95 },
+  { id: 4, src: '/Teclado4.webp', alt: 'Tempest K9 RGB Backlit Teclado Gaming RGB', price: 13.99 },
 ];
-
-const Teclado = ({updateTotalPrice}) => {
+const Teclado = ({updateTotalPrice, setSelectedTeclado}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -21,13 +20,13 @@ const Teclado = ({updateTotalPrice}) => {
 
   const handleAddClick = (image) => {
     if (selectedImage) {
-      // Si ya se seleccionó una pantalla, mostrar el mensaje de error
       setShowErrorMessage(true);
     } else {
       setSelectedImage(image);
       setShowDetails(false);
       setPantallaSeleccionada(true);
-      updateTotalPrice(image.price);
+      updateTotalPrice(Number(image.price.toFixed(2)));
+      setSelectedTeclado(image);
     }
   };
 
@@ -45,7 +44,7 @@ const Teclado = ({updateTotalPrice}) => {
 
   const handleDeleteClick = () => {
     if (selectedImage) {
-      updateTotalPrice(-selectedImage.price); // Resta el precio de la pantalla eliminada
+      updateTotalPrice(Number(-selectedImage.price.toFixed(2))); // Resta el precio de la pantalla eliminada
       setSelectedImage(null);
       setPantallaSeleccionada(false);
     }
@@ -57,7 +56,7 @@ const Teclado = ({updateTotalPrice}) => {
         <Col key={idx}>
           <Card style={{ width: '12.5rem', height: '100%' }}>
             <Card.Img variant="top" src={image.src} alt={image.alt} />
-            <Card.Body className="d-flex flex-column">
+            <Card.Body classalt="d-flex flex-column">
               <Card.Title>{image.alt}</Card.Title>
               <div className="d-flex justify-content-between">
                 <Button variant="primary" onClick={() => handleAddClick(image)}>
@@ -122,4 +121,6 @@ const Teclado = ({updateTotalPrice}) => {
     </Row>
   );
 };
+
 export default Teclado;
+

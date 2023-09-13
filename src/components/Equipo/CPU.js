@@ -7,13 +7,13 @@ import Modal from 'react-bootstrap/Modal';
 import './Pantalla.css';
 
 const images = [
-  { id: 1, src: '/CPU1.webp', alt: 'PcCom iCUE i7', price: 2967.72 },
+  { id: 1, src: '/CPU1.webp', alt: 'PcCom iCUE i7', price: 2967.72},
   { id: 2, src: '/CPU2.webp', alt: 'PcCom Ready Ryzen 5', price: 1049.24 },
-  { id: 3, src: '/CPU3.webp', alt: 'PcCom Ready Ryzen 5', price: 1084.81 },
+  { id: 3, src: '/CPU3.webp', alt: 'PcCom Imperial i7 ', price: 1084.81 },
   { id: 4, src: '/CPU4.webp', alt: 'PcCom Lite i5', price: 1171.01 },
 ];
 
-const CPU = ({updateTotalPrice}) => {
+const CPU = ({updateTotalPrice, setSelectedCPU}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -27,7 +27,8 @@ const CPU = ({updateTotalPrice}) => {
       setSelectedImage(image);
       setShowDetails(false);
       setPantallaSeleccionada(true);
-      updateTotalPrice(image.price);
+      updateTotalPrice(Number(image.price.toFixed(2)));
+      setSelectedCPU(image);
     }
   };
 
@@ -45,7 +46,7 @@ const CPU = ({updateTotalPrice}) => {
 
   const handleDeleteClick = () => {
     if (selectedImage) {
-      updateTotalPrice(-selectedImage.price); // Resta el precio de la pantalla eliminada
+      updateTotalPrice(Number(-selectedImage.price.toFixed(2))); // Resta el precio de la pantalla eliminada
       setSelectedImage(null);
       setPantallaSeleccionada(false);
     }
@@ -57,7 +58,7 @@ const CPU = ({updateTotalPrice}) => {
         <Col key={idx}>
           <Card style={{ width: '12.5rem', height: '100%' }}>
             <Card.Img variant="top" src={image.src} alt={image.alt} />
-            <Card.Body className="d-flex flex-column">
+            <Card.Body classalt="d-flex flex-column">
               <Card.Title>{image.alt}</Card.Title>
               <div className="d-flex justify-content-between">
                 <Button variant="primary" onClick={() => handleAddClick(image)}>
@@ -111,7 +112,7 @@ const CPU = ({updateTotalPrice}) => {
           <Modal.Title>Error</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Solo puedes escoger una CPU.
+          Solo puedes escoger una pantalla.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseErrorMessage}>
@@ -122,4 +123,6 @@ const CPU = ({updateTotalPrice}) => {
     </Row>
   );
 };
+
 export default CPU;
+

@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import './ComponentesEquipo.css';
 import Pantalla from './Pantalla';
-import EquipoMedida from './EquipoMedida';
 import CPU from './CPU';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
+import EquipoMedida from './EquipoMedida'
+import Teclado from './Teclado';
+import Mouse from './Mouse';
 
 const ComponentesEquipo = () => {
   const [reducir, setReducir] = useState(false);
   const [mostrarTarjetasP, setMostrarTarjetasP] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [mostrarTarjetasCPU, setMostrarTarjetasCPU] = useState(false);
-  const [mostrarTarjetasT, setMostrarTarjetasT] = useState(false);
-  const [mostrarTarjetasM, setMostrarTarjetasM] = useState(false);
-
+  const [mostrarTarjetasTeclado, setMostrarTarjetasTeclado] = useState(false);
+  const [mostrarTarjetasMouse, setMostrarTarjetasMouse] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [selectedPantalla, setSelectedPantalla] = useState(null);
+  const [selectedCPU, setSelectedCPU] = useState(null);
+  const [selectedTeclado, setSelectedTeclado] = useState(null);
+  const [selectedMouse, setSelectedMouse] = useState(null);
+  const [showTotal, setShowTotal] = useState(false);
 
   const items = [
     { nombre: 'Pantalla', icono: `${process.env.PUBLIC_URL}/Monitor.svg` },
@@ -21,31 +29,29 @@ const ComponentesEquipo = () => {
   ];
 
   const handleItemClick = (nombre) => {
-    if (nombre === 'Pantalla') {
+    if (nombre === 'Pantalla' && !selectedPantalla) {
       if (!reducir) {
         setReducir(true);
         setMostrarTarjetasP(true);
-        setMostrarTarjetasCPU(false); // Ocultar tarjetas de CPU cuando se selecciona Pantalla
+        setMostrarTarjetasCPU(false);
       }
-    } else if (nombre === 'CPU') {
+    } else if (nombre === 'CPU' && !selectedCPU) {
       if (!reducir) {
         setReducir(true);
-        setMostrarTarjetasCPU(true); // Mostrar tarjetas de CPU cuando se selecciona CPU
-        setMostrarTarjetasCPU(false); // Ocultar tarjetas de Pantalla cuando se selecciona CPU
+        setMostrarTarjetasCPU(true);
+        setMostrarTarjetasP(false);
       }
-    }
-    else if (nombre === 'Teclado') {
-      if (!reducir) {
+    } else if (nombre === 'Teclado' && !selectedTeclado){
+      if(!reducir){
         setReducir(true);
-        setMostrarTarjetasT(true); // Mostrar tarjetas de CPU cuando se selecciona CPU
-        setMostrarTarjetasT(false); // Ocultar tarjetas de Pantalla cuando se selecciona CPU
+        setMostrarTarjetasTeclado(true);
+        setMostrarTarjetasCPU(false);
       }
-    }
-    else if (nombre === 'Mouse') {
-      if (!reducir) {
+    } else if (nombre === 'Mouse' && !selectedMouse){
+      if(!reducir){
         setReducir(true);
-        setMostrarTarjetasCPU(true); // Mostrar tarjetas de CPU cuando se selecciona CPU
-        setMostrarTarjetasM(false); // Ocultar tarjetas de Pantalla cuando se selecciona CPU
+        setMostrarTarjetasMouse(true);
+        setMostrarTarjetasTeclado(false);
       }
     }
   };
@@ -53,11 +59,25 @@ const ComponentesEquipo = () => {
   const handleNextClick = () => {
     setReducir(false);
     setMostrarTarjetasP(false);
+    setMostrarTarjetasTeclado(false);
+    setMostrarTarjetasCPU(false);
+    setMostrarTarjetasMouse(false);
   };
 
   const updateTotalPrice = (price) => {
     setTotalPrice(prevTotalPrice => prevTotalPrice + price);
   };
+
+  const handleTotalClick = () => {
+    if (selectedPantalla || selectedCPU) {
+      setShowTotal(true);
+    }
+  };
+
+  const handleCloseTotal = () => {
+    setShowTotal(false);
+  };
+  
   return (
     <div>
       {items.map(item => (
@@ -70,11 +90,53 @@ const ComponentesEquipo = () => {
           <span className={`nombre ${reducir ? 'oculto' : ''}`}>{item.nombre}</span>
         </div>
       ))}
-      {mostrarTarjetasP && <Pantalla updateTotalPrice={updateTotalPrice}/>}
-      {mostrarTarjetasCPU && <CPU updateTotalPrice={updateTotalPrice}/>}
-      {mostrarTarjetasT && <Pantalla updateTotalPrice={updateTotalPrice}/>}
-      {mostrarTarjetasM && <CPU updateTotalPrice={updateTotalPrice}/>}
+      {mostrarTarjetasP && <Pantalla updateTotalPrice={updateTotalPrice} setSelectedPantalla={setSelectedPantalla} />}
+      {mostrarTarjetasCPU && <CPU updateTotalPrice={updateTotalPrice} setSelectedCPU={setSelectedCPU} />}
+      {mostrarTarjetasTeclado && <Teclado updateTotalPrice={updateTotalPrice} setSelectedTeclado={setSelectedTeclado} />}
+      {mostrarTarjetasMouse && <Mouse updateTotalPrice={updateTotalPrice} setSelectedMouse={setSelectedMouse} />}
       <EquipoMedida totalPrice={totalPrice} onNextClick={handleNextClick}/>
+      <Button variant="secondary" onClick={handleTotalClick} className='ButonCart'>
+        Carrito
+      </Button>
+      <Modal show={showTotal} onHide={handleCloseTotal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Información de la Selección</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedPantalla ? (
+            <div>
+              <p>ID Pantalla: {selectedPantalla.id}</p>
+              <p>Nombre Pantalla: {selectedPantalla.alt}</p>
+            </div>
+          ) : (
+            <p>No hay pantalla seleccionada</p>
+          )}
+          {selectedCPU ? (
+            <div>
+              <p>ID CPU: {selectedCPU.id}</p>
+              <p>Nombre CPU: {selectedCPU.alt}</p>
+            </div>
+          ) : (
+            <p>No hay CPU seleccionada</p>
+          )}
+          {selectedTeclado ? (
+            <div>
+              <p>ID Teclado: {selectedTeclado.id}</p>
+              <p>Nombre Teclado: {selectedTeclado.alt}</p>
+            </div>
+          ) : (
+            <p>No hay teclado seleccionada</p>
+          )}
+          {selectedMouse ? (
+            <div>
+              <p>ID Mouse: {selectedMouse.id}</p>
+              <p>Nombre Mouse: {selectedMouse.alt}</p>
+            </div>
+          ) : (
+            <p>No hay mouse seleccionada</p>
+          )}
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
