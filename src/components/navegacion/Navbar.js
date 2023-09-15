@@ -38,9 +38,9 @@ export const Navbar = () => {
             </span>
             </li>
             <li className="cart">
-              <a id="cart-trigger" href="/es/checkout/cart" rel="nofollow" className='Icono-Cart'>
+              <Link id="cart-trigger" to="/cart" rel="nofollow" className='Icono-Cart'>
                 <img src="https://d1fufvy4xao6k9.cloudfront.net/images/menu/cart.svg" width="22" height="22" alt="Carrito" />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

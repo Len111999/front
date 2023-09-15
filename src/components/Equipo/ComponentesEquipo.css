@@ -34,7 +34,3 @@ span {
     transform: scale(0.8) translateX(-70px);; /* Reducimos el tamaño de todos los elementos */
     transition: transform 0.3s;
 }
-.ButonCart{
-    margin-top: 2px;
-    margin-left: 172vh;
-}

@@ -1,5 +1,4 @@
 import React from 'react'
-import './Footer.css'
 
 export const Footer = () => {
   return (
@@ -11,7 +10,7 @@ export const Footer = () => {
                     <input type="hidden" name="src" value="newsletter"/>
                     <input type="hidden" name="callback" value=""/>
                         <p className="title2">Apúntate a la newsletter para recibir las novedades</p>
-                    <input rel="1" id="register_input_footer" required="required"  className="required email" type="email" name="email" autocomplete="email" placeholder="Dirección e-mail"/>
+                    <input rel="1" id="register_input_footer" required="required"  className="required email" type="email" name="email" placeholder="Dirección e-mail"/>
                     <span id="register_newsletter" className="send-newsletter">
                         <span className="ico-newsletter">→</span>
                     </span>
@@ -23,16 +22,16 @@ export const Footer = () => {
                 </form>
             </div>
             <div className="company col">
-                <p className="title3">Empresa</p>
+                <p className="title3" style = {{marginLeft: '30px'}}>Empresa</p>
                 <ul>
                     <li><a href="/es/info/aboutus">Acerca de nosotros</a></li>
                     <li><a href="/es/info/como-funciona">Cómo funciona</a></li>
                     <li><a href="/es/info/ajuste-perfecto/">Garantía de ajuste perfecto</a></li>
-                    <li><a href="/es/blog/" className="blog" target="_blank">Hockerty Blog</a></li>
+                    <li><a href="/es/blog/" className="blog" target="_blank">Blog</a></li>
                 </ul>
             </div>
             <div className="company col">
-                <p className="title3">Soporte</p>
+                <p className="title3" style = {{marginLeft: '30px'}}>Soporte</p>
                 <ul>
                     <li><a href="/es/info/contact">Contáctanos</a></li>
                     <li><a href="/es/coleccion-de-tejidos/">Pide tejidos de muestra</a></li>					

@@ -26,8 +26,8 @@ export const Carousel = () => {
                      ref={videoRef}
                     className="b-lazy desktop b-loaded" 
                     autoPlay loop muted playsInline data-amp-remove="1">
-                        <source type="video/mp4" src="" />
-                        <source type="video/mp4" src="" />
+                        <source type="video/mp4" src="./Video.mp4" />
+                        <source type="video/mp4" src="./Video.mp4" />
                         <img data-src="" className="blazy" alt="" />
                     </video>
                     <video
@@ -54,7 +54,7 @@ export const Carousel = () => {
             <div className="big_features">
                 <div className="feature planet">
                     <div className="image1">
-                        <img width="375" height="419" className="b-lazy1 b-loaded" alt="" src="" />
+                        <img width="375" height="419" className="b-lazy1 b-loaded" alt="" src="./proximamente.png" />
                     </div>
                     <div className="text1">
                         <p className="title1">¿Problemas con tu equipo?</p>

@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Pantalla.css';
+import { useCart } from '../Context/CartContext';
 
 const images = [
   { id: 1, src: '/CPU1.webp', alt: 'PcCom iCUE i7', price: 2967.72},
@@ -18,6 +19,7 @@ const CPU = ({updateTotalPrice, setSelectedCPU}) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [pantallaSeleccionada, setPantallaSeleccionada] = useState(false);
+  const {addToCart, removeFromCart } = useCart();
 
   const handleAddClick = (image) => {
     if (selectedImage) {
@@ -29,6 +31,7 @@ const CPU = ({updateTotalPrice, setSelectedCPU}) => {
       setPantallaSeleccionada(true);
       updateTotalPrice(Number(image.price.toFixed(2)));
       setSelectedCPU(image);
+      addToCart(image);
     }
   };
 
@@ -49,6 +52,7 @@ const CPU = ({updateTotalPrice, setSelectedCPU}) => {
       updateTotalPrice(Number(-selectedImage.price.toFixed(2))); // Resta el precio de la pantalla eliminada
       setSelectedImage(null);
       setPantallaSeleccionada(false);
+      removeFromCart(selectedImage);
     }
   };
   
@@ -58,7 +62,7 @@ const CPU = ({updateTotalPrice, setSelectedCPU}) => {
         <Col key={idx}>
           <Card style={{ width: '12.5rem', height: '100%' }}>
             <Card.Img variant="top" src={image.src} alt={image.alt} />
-            <Card.Body classalt="d-flex flex-column">
+            <Card.Body className="d-flex flex-column">
               <Card.Title>{image.alt}</Card.Title>
               <div className="d-flex justify-content-between">
                 <Button variant="primary" onClick={() => handleAddClick(image)}>

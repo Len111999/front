@@ -7,7 +7,7 @@ const EquipoMedida = ({ totalPrice, onNextClick }) => {
     <div className="title-price">
       <h2>Tu Equipo a Medida</h2>
       <p>Precio Total: {totalPrice}€</p>
-      <Button variant="secondary" onClick={() => onNextClick()}>
+      <Button variant="secondary" onClick={() => onNextClick()} className='sig'>
         Siguiente
       </Button>
     </div>

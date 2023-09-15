@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import './ComponentesEquipo.css';
 import Pantalla from './Pantalla';
 import CPU from './CPU';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
-import EquipoMedida from './EquipoMedida'
+import EquipoMedida from './EquipoMedida';
 import Teclado from './Teclado';
 import Mouse from './Mouse';
+
 
 const ComponentesEquipo = () => {
   const [reducir, setReducir] = useState(false);
@@ -19,7 +18,6 @@ const ComponentesEquipo = () => {
   const [selectedCPU, setSelectedCPU] = useState(null);
   const [selectedTeclado, setSelectedTeclado] = useState(null);
   const [selectedMouse, setSelectedMouse] = useState(null);
-  const [showTotal, setShowTotal] = useState(false);
 
   const items = [
     { nombre: 'Pantalla', icono: `${process.env.PUBLIC_URL}/Monitor.svg` },
@@ -68,16 +66,6 @@ const ComponentesEquipo = () => {
     setTotalPrice(prevTotalPrice => prevTotalPrice + price);
   };
 
-  const handleTotalClick = () => {
-    if (selectedPantalla || selectedCPU) {
-      setShowTotal(true);
-    }
-  };
-
-  const handleCloseTotal = () => {
-    setShowTotal(false);
-  };
-  
   return (
     <div>
       {items.map(item => (
@@ -95,48 +83,6 @@ const ComponentesEquipo = () => {
       {mostrarTarjetasTeclado && <Teclado updateTotalPrice={updateTotalPrice} setSelectedTeclado={setSelectedTeclado} />}
       {mostrarTarjetasMouse && <Mouse updateTotalPrice={updateTotalPrice} setSelectedMouse={setSelectedMouse} />}
       <EquipoMedida totalPrice={totalPrice} onNextClick={handleNextClick}/>
-      <Button variant="secondary" onClick={handleTotalClick} className='ButonCart'>
-        Carrito
-      </Button>
-      <Modal show={showTotal} onHide={handleCloseTotal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Información de la Selección</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedPantalla ? (
-            <div>
-              <p>ID Pantalla: {selectedPantalla.id}</p>
-              <p>Nombre Pantalla: {selectedPantalla.alt}</p>
-            </div>
-          ) : (
-            <p>No hay pantalla seleccionada</p>
-          )}
-          {selectedCPU ? (
-            <div>
-              <p>ID CPU: {selectedCPU.id}</p>
-              <p>Nombre CPU: {selectedCPU.alt}</p>
-            </div>
-          ) : (
-            <p>No hay CPU seleccionada</p>
-          )}
-          {selectedTeclado ? (
-            <div>
-              <p>ID Teclado: {selectedTeclado.id}</p>
-              <p>Nombre Teclado: {selectedTeclado.alt}</p>
-            </div>
-          ) : (
-            <p>No hay teclado seleccionada</p>
-          )}
-          {selectedMouse ? (
-            <div>
-              <p>ID Mouse: {selectedMouse.id}</p>
-              <p>Nombre Mouse: {selectedMouse.alt}</p>
-            </div>
-          ) : (
-            <p>No hay mouse seleccionada</p>
-          )}
-        </Modal.Body>
-      </Modal>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './Pantalla.css';
+import { useCart } from '../Context/CartContext';
 
 const images = [
   { id: 1, src: '/Teclado1.webp', alt: 'Razer Huntsman Mini Teclado Gaming', price: 89.99 },
@@ -17,6 +18,7 @@ const Teclado = ({updateTotalPrice, setSelectedTeclado}) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [pantallaSeleccionada, setPantallaSeleccionada] = useState(false);
+  const {addToCart, removeFromCart } = useCart();
 
   const handleAddClick = (image) => {
     if (selectedImage) {
@@ -27,6 +29,7 @@ const Teclado = ({updateTotalPrice, setSelectedTeclado}) => {
       setPantallaSeleccionada(true);
       updateTotalPrice(Number(image.price.toFixed(2)));
       setSelectedTeclado(image);
+      addToCart(image);
     }
   };
 
@@ -47,6 +50,7 @@ const Teclado = ({updateTotalPrice, setSelectedTeclado}) => {
       updateTotalPrice(Number(-selectedImage.price.toFixed(2))); // Resta el precio de la pantalla eliminada
       setSelectedImage(null);
       setPantallaSeleccionada(false);
+      removeFromCart(selectedImage);
     }
   };
   
@@ -56,7 +60,7 @@ const Teclado = ({updateTotalPrice, setSelectedTeclado}) => {
         <Col key={idx}>
           <Card style={{ width: '12.5rem', height: '100%' }}>
             <Card.Img variant="top" src={image.src} alt={image.alt} />
-            <Card.Body classalt="d-flex flex-column">
+            <Card.Body className="d-flex flex-column">
               <Card.Title>{image.alt}</Card.Title>
               <div className="d-flex justify-content-between">
                 <Button variant="primary" onClick={() => handleAddClick(image)}>
